@@ -37,6 +37,8 @@ class Server():
 			
 			th.start()
 
+		self.serverSocket
+
 	def proxy_thread(self, clientSocket, client_address, config):
 			# Obtaining request
 			req = clientSocket.recv(config['MAX_REQUEST_LEN'])
@@ -54,9 +56,9 @@ class Server():
 			# Port number from the request
 			port_pos = url.find(":")
 
-			try:
-				port_num = int(url[(port_pos+1):])
-			except:
+			try:     
+				port_num = int(url[(port_pos+1):]) 
+			except:     
 				port_num = 80
 
 			webserver = url[:port_pos]
