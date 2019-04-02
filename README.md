@@ -2,7 +2,25 @@
 
 ## Description
 
-This is a multi-threading proxy server developed using python libraries like threading, sockets and signal. Caching is done to respond to same and frequent requests.
+This is a multi-threading HTTP proxy server developed using python3 and libraries like threading, sockets and signal.
+
+## Features
+
+* Multiple clients
+* Caching in case of too frequent requests
+* Blocking based in a CIDR list(present in blacklist.txt)
+* Basic Access Authentication
+
+## To Run
+
+```console
+	bar@foo:~$ python server.py
+```
+
+## Sites for testing
+
+* [ICZN](iczn.org)
+* [Baidu](www.baidu.com)
 
 ## Author
 
