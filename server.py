@@ -66,6 +66,7 @@ class Server():
 			pass
 
 
+
 		# String parsing
 		try:
 			url = str_req.split('\n')[0].split(' ')[1]
@@ -81,7 +82,7 @@ class Server():
 		try:
 			ipaddr = socket.gethostbyname(url.split('/')[0])
 			if ipaddr in blocked and not password_protect:
-				clientSocket.send(str.encode('Page blocked'))
+				clientSocket.send(str.encode('Page blocked\n'))
 				exit(0)
 		except Exception as e:
 			pass
@@ -153,7 +154,7 @@ class Server():
 			try:
 				# Inserting in cache
 				if self.reqDict[url][0] >= 300:
-					if len(self.Memory) == 300:
+					if len(self.Memory) == 3:
 						self.Memory.pop(url, None)	
 					self.Memory[url] = temp
 			except:
@@ -191,16 +192,15 @@ credentials = {
 
 
 
-
 # Generating the blocked ip addresses list
 blocked = []
 f = open('blacklist.txt', 'r')
 
-for l in f:
+for ln in f:
 	# Converting CIDR to IpAddresses
-	(ip, cidr) = l.split('/')
-	cidr = int(cidr) 
-	host_bits = 32 - cidr
+	(ip, cidrnum) = ln.split('/')
+	cidrnum = int(cidrnum) 
+	host_bits = 32 - cidrnum
 	i = struct.unpack('>I', socket.inet_aton(ip))[0]
 	start = (i >> host_bits) << host_bits
 	end = start | ((1 << host_bits))
