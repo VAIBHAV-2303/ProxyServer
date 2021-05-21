@@ -13,8 +13,8 @@ This is a multi-threading HTTP proxy server developed using python3 and librarie
 
 ## To Run
 
-```console
-	bar@foo:~$ python server.py
+```bash
+bar@foo:~$ python server.py
 ```
 
 ## Sites for testing
